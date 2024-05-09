@@ -2,10 +2,10 @@
 
 ### Membros da equipe:
 <ul>
-<li> Emily Crepaldi </li>
-<li> Gustavo Henrique </li>
-<li> Nicolas Vasconcelos </li>
-<li> Nycolle Lima </li>
+<li> Emily Crepaldi (DBA)</li>
+<li> Gustavo Henrique (DEV Front-End)</li>
+<li> Nicolas Vasconcelos (DEV Back-End)</li>
+<li> Nycolle Lima (DEV - Front-End)</li>
 </ul>
 
 #
