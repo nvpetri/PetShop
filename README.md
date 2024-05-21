@@ -22,4 +22,4 @@ O PetShopping, uma loja especializada em produtos e serviços para animais de es
 <img src="" width=''>
 
 #### Desktop página inicial:
-<img src="./imgs(readme)/desktop-pg.png" width='500'>
+<img src="./imgs(readme)/desktop-pg.png" width='1000'>
