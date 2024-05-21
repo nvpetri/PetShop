@@ -1,0 +1,76 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+main{
+    width: 100vw;
+    height: 100vh;
+}
+
+.conteudo{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.marcar-servico{
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.marcar-data{
+    width: 50vw;
+    background-color: #FF914D;
+}
+
+.titulo{
+    width: 100%;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    text-align: center;
+    color: #FF914D;
+}
+
+.marcar-data h1{
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40%;
+    gap: 48px;
+}
+
+.form-select{
+    width: 70%;
+    height: 5vh;
+    border-radius: 32px;
+    padding: 10px;
+    border: 1px solid #FF914D;
+}
+
+button{
+    color: #FF914D;
+    background-color: transparent;
+    border: 4px solid #FF914D;
+    border-radius: 32px;
+    width: 280px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+}

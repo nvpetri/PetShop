@@ -1,0 +1,68 @@
+:root {
+    --background: #060D23;
+    --google: #FF914D;
+    --apple: #0F1419;
+    --white: #FFF;
+    --face: #3b5998;
+}
+
+i{
+    color: white;
+    font-size: 24px;
+}
+
+
+.social-media-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.social-media-button{
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    outline: 2px solid white;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: grid;
+    place-items: center;
+}
+
+.social-media-button:hover {
+    outline-offset: 3px;
+    transition: all 0.1s;
+}
+
+.social-media-button {
+    transition: all 0.3s;
+}
+
+.social-media-button:hover {
+    transform: scale(1.15);
+}
+
+.social-media-button:hover:nth-child(1) {
+    background-color: var(--google);
+}
+
+.social-media-button:hover:nth-child(2) {
+    background-color: var(--face);
+}
+
+.social-media-button:hover:nth-child(2) {
+    stroke: var(--x);
+}
+
+.social-media-button:hover:nth-child(3) {
+    background-color: var(--white);
+}
+
+.social-media-button:hover:nth-child(3) .fa-brands {
+    color: black;
+}
