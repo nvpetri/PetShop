@@ -65,14 +65,16 @@ footer {
     width: 80%;
     height: 50%;
     border-collapse: collapse;
+    border: 2px solid #FFFFFF;
 }
 
 .table th,
 .table td {
-    border: 1px solid #FFFFFF; 
-    padding: 8px; 
+    border-top: 1px solid #FFFFFF; 
+    border-bottom: 1px solid #FFFFFF; 
+    padding: 8px;
     text-align: center; 
-    color: #FFFFFF; 
+    color: #FFFFFF;
 }
 
 
@@ -91,7 +93,7 @@ button {
 button:hover {
     background-color: #FF914D;
     color: white;
-    transition: 0.3s;
+    transition: 0.1s;
 }
 
 .servicos h1 {
