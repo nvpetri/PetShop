@@ -1,17 +1,16 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
 
-
-header{
+header {
     padding: 24px;
     width: 100vw;
 }
 
-.header{
+.header {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -22,7 +21,7 @@ h1 {
     color: #FF914D;
 }
 
-.infos{
+.infos {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -31,11 +30,11 @@ h1 {
     color: #FF914D;
 }
 
-i{
+i {
     font-size: 35px;
 }
 
-.containers{
+.containers {
     width: 100vw;
     height: 50vh;
     display: flex;
@@ -44,7 +43,7 @@ i{
     gap: 100px;
 }
 
-.container{
+.container {
     width: 385px;
     height: 100%;
     background-color: #6E17AF;
@@ -55,20 +54,29 @@ i{
     flex-direction: column;
 }
 
-footer{
+footer {
     width: 100vw;
     height: 15vh;
     display: grid;
     place-items: center;
-
 }
 
-.table{
+.table {
     width: 80%;
     height: 50%;
+    border-collapse: collapse;
 }
 
-button{
+.table th,
+.table td {
+    border: 1px solid #FFFFFF; 
+    padding: 8px; 
+    text-align: center; 
+    color: #FFFFFF; 
+}
+
+
+button {
     color: #FF914D;
     background-color: transparent;
     border: 4px solid #FF914D;
@@ -80,7 +88,7 @@ button{
     font-weight: bold;
 }
 
-button:hover{
+button:hover {
     background-color: #FF914D;
     color: white;
     transition: 0.3s;
