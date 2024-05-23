@@ -10,6 +10,9 @@ create table tbl_sexo(
     unique key(id)
 );
 
+insert into tbl_sexo (nome) values (
+"Masculino"), ("Feminino");
+
 create table tbl_cargos(
 	id int not null auto_increment primary key,
     nome varchar(50),
@@ -17,6 +20,9 @@ create table tbl_cargos(
     unique index(id),
     unique key(id)
 );
+
+insert into tbl_cargos (nome) values (
+"Veterinário"), ("Tosador"), ("Banhista");
 
 create table tbl_funcionarios(
 	id int not null auto_increment primary key,
@@ -29,13 +35,34 @@ create table tbl_funcionarios(
     id_sexo int not null,
     id_cargo int not null,
     
-    foreign key(id_cargo)references tbl_cargo(id),
+    foreign key(id_cargo)references tbl_cargos(id),
     
     foreign key(id_sexo) references tbl_sexo(id),
     
 	unique index(id),
     unique key (id)
 );
+
+insert into tbl_funcionarios (nome, email, senha, telefone, foto_perfil, data_nascimento, id_sexo, id_cargo) 
+values (
+  "Fernando Leonid",  
+  "fernandoleonid@gmail.com", 
+  "12345", 
+  "1133334444", 
+  "https://itpetblog.com.br/wp-content/uploads/2023/06/banho_no_inverno.jpg", 
+  "1982-08-09", 
+  1,
+  2
+  ),(
+  "Vitor de Jesus",  
+  "vitordejesus@gmail.com", 
+  "12345", 
+  "1122223333", 
+  "https://itpetblog.com.br/wp-content/uploads/2023/06/banho_no_inverno.jpg", 
+  "1990-03-29", 
+  1,
+  1
+  );
 
 create table tbl_usuario(
 	id int not null auto_increment primary key,
@@ -53,6 +80,17 @@ create table tbl_usuario(
     unique key (id)
 );
 
+insert into tbl_usuario (nome, email, senha, telefone, foto_perfil, data_nascimento, id_sexo) 
+values (
+  "Celso Furtado",  
+  "celso@celso.dev", 
+  "12345", 
+  "1133334444", 
+  "https://itpetblog.com.br/wp-content/uploads/2023/06/banho_no_inverno.jpg", 
+  "1982-08-09", 
+  1
+  );
+  
 create table tbl_taxonomia(
 	id int not null primary key auto_increment,
     especie varchar(100) not null,
@@ -60,6 +98,11 @@ create table tbl_taxonomia(
     
     unique index(id),
     unique key(id)
+);
+
+insert into tbl_taxonomia (especie, raca) values(
+	"Cão",
+    "Golden Retriever"
 );
 
 create table tbl_pet(
@@ -80,6 +123,15 @@ create table tbl_pet(
     unique key(id)
 );
 
+insert into tbl_pet (nome, foto, data_nascimento, id_dono, id_sexo, id_raca) values(
+	"Myke",
+    "https://static.wixstatic.com/media/db516d_a7f7619f878f4c29948251d50d7f8de9~mv2.jpg/v1/fill/w_569,h_512,al_c,lg_1,q_80,usm_1.20_1.00_0.01,enc_auto/db516d_a7f7619f878f4c29948251d50d7f8de9~mv2.jpg",
+    "2019-11-21",
+    1,
+    1,
+    1
+);
+
 create table tbl_servicos(
 	id int not null auto_increment primary key,
     nome varchar(40) not null,
@@ -97,6 +149,10 @@ create table tbl_servicos(
     unique key(id)
 );
 
+insert into tbl_servicos (nome, descricao, data_realizacao, hora, id_funcionario, id_pet) values (
+"Banho e tosa", "Banho e tosa do Myke", "2024-02-03", "17:00:00", "1", "1"), (
+"Consulta", "Consulta do Myke", "2024-04-06", "15:40:00", "2", "1");
+
 create table tbl_categorias_produtos(
 	id int not null auto_increment primary key,
     nome varchar(50) not null,
@@ -105,6 +161,12 @@ create table tbl_categorias_produtos(
     unique index(id),
     unique key(id)
 );
+
+insert into tbl_categorias_produtos (nome, descricao) values (
+"Animais", "Produtos de todos os tipos de pets."),
+("Ração", "Escolha a melhor ração para o tipo do seu pet."),
+("Brinquedos", "Escolha o brinquedo ideal para o seu querido pet."),
+("Acessórios", "Lugar do pet estiloso.");
 
 create table tbl_produtos(
 	id int not null primary key auto_increment,
@@ -118,6 +180,20 @@ create table tbl_produtos(
     foreign key (id_categoria) references tbl_categorias_produtos(id)
 );
 
+insert into tbl_produtos (nome, descricao, foto, quantidade, valor_unitario, id_categoria) values (
+	"Ração GoldeN, para filhotes",
+	"Ração para filhotes sabor carne",
+	"https://media.breeds.com.br/media/catalog/product/cache/58b66ab76459b8fd9436b709660314ca/I/M/IMG_35558_1675_2.webp",
+	"2",
+	"89.90",
+	"2"), (
+	"Roupa para GoldeN, tamanho adulto",
+	"Roupa vermelha xadrez tamanho adulto.",
+	"https://m.media-amazon.com/images/I/61irzi92v0L._AC_UF1000,1000_QL80_.jpg",
+	"2",
+	"49.99",
+	"4");
+
 create table tbl_carrinho(
 	id int not null auto_increment primary key,
     quantidade_produtos int not null default 0,
@@ -125,8 +201,11 @@ create table tbl_carrinho(
     id_produtos int,
     id_cliente int not null,
     
-    foreign key(id_cliente) references tbl_usuarios(id)
+    foreign key(id_cliente) references tbl_usuario(id)
 );
+
+insert into tbl_carrinho (quantidade_produtos, valor_total, id_produtos, id_cliente) values (
+	"1", "49.99", "2", "1");
 
 CREATE TABLE tbl_compras (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -137,5 +216,8 @@ CREATE TABLE tbl_compras (
     endereco_entrega VARCHAR(255),
     metodo_pagamento VARCHAR(50),
     
-    FOREIGN KEY (id_cliente) REFERENCES tbl_usuarios(id)
+    FOREIGN KEY (id_cliente) REFERENCES tbl_usuario(id)
 );
+
+insert into tbl_compras (id_cliente, data_compra, valor_total, status_compra, endereco_entrega, metodo_pagamento) values (
+"1", "2024-05-23", "49.99", "Pago", "Rua SENAI Jandira, 127, Jardim SESI-SENAI", "Cartão de crédito");
