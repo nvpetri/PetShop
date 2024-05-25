@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <title>PetShopping</title>
 </head>
+
 <body>
     <header>
         <div class="header">
@@ -16,25 +25,36 @@
                 <img src="./img/PetShoppin 1.png" alt="Logo">
             </div>
             <div class="home">
-                <h2>Home</h2>
-                <h2>Produtos</h2>
-                <h2>Serviços</h2>
+                <ul class="nav nav-underline">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="./index.html" style="color: white;">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./pages/produtos.html">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./pages/servicos.html">Serviços</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </header>
     <main>
-       <div class="container">
-        <div class="slogan">
-            <h1>LUGAR PREFERIDO DO SEU PET</h1>
-            <h3>Pensando no amor, saúde, conforto e diversão do seu pet</h3>
+        <div class="container">
+            <div class="slogan">
+                <h1>LUGAR PREFERIDO DO SEU PET</h1>
+                <h3>Pensando no amor, saúde, conforto e diversão do seu pet</h3>
+            </div>
+            <div class="opcoes">
+                <a href="./pages/cadastro.html">
+                    <button>Cadastre seu pet</button>
+                </a>
+                <a href="./pages/login.html">
+                    <button>Login</button>
+                </a>
+            </div>
         </div>
-        <div class="opcoes">
-            <button>Cadastre seu pet</button>
-            <a href="./pages/login.html">
-                <button>Login</button>
-            </a>
-           </div>
-       </div>
     </main>
 </body>
+
 </html>
