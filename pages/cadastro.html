@@ -24,11 +24,25 @@
         <div class="form-container sign-up">
             <form>
                 <h1>Cadastre seu pet</h1>
-                <input type="text" placeholder="Nome do pet">
-                <input type="text" placeholder="Tipo de pet">
-                <input type="email" placeholder="Idade do pet">
-                <input type="password" placeholder="Sexo do pet">
-                <button class="button">Cadastrar Pet</button>
+                <div class="inputs">
+                    <input type="text" placeholder="Nome do pet">
+                    <select class="form-select" aria-label="Tipo de pet">
+                        <option value="1">Cachorro</option>
+                        <option value="2">Gato</option>
+                        <option value="3">Hamster</option>
+                    </select>
+                    <select class="form-select" aria-label="Idade do pet">
+                        <option value="1">Filhote</option>
+                        <option value="2">Jovem adulto</option>
+                        <option value="3">Adulto</option>
+                        <option value="4">Geriátrico </option>
+                    </select>
+                    <select class="form-select" aria-label="Sexo do pet">
+                        <option value="1">Macho</option>
+                        <option value="2">Fêmea</option>
+                    </select>
+                    <button class="button">Cadastrar Pet</button>
+                </div>
             </form>
         </div>
         <div class="toggle-container">
