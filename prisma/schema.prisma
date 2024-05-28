@@ -1,0 +1,141 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model tbl_cargos {
+  id               Int                @id @unique(map: "id") @default(autoincrement())
+  nome             String?            @db.VarChar(50)
+  tbl_funcionarios tbl_funcionarios[]
+}
+
+model tbl_carrinho {
+  id                  Int         @id @default(autoincrement())
+  quantidade_produtos Int         @default(0)
+  valor_total         Float       @default(0)
+  id_produtos         Int?
+  id_cliente          Int
+  tbl_usuario         tbl_usuario @relation(fields: [id_cliente], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_carrinho_ibfk_1")
+
+  @@index([id_cliente], map: "id_cliente")
+}
+
+model tbl_categorias_produtos {
+  id           Int            @id @unique(map: "id") @default(autoincrement())
+  nome         String         @db.VarChar(50)
+  descricao    String?        @db.VarChar(255)
+  tbl_produtos tbl_produtos[]
+}
+
+model tbl_compras {
+  id               Int         @id @default(autoincrement())
+  id_cliente       Int
+  data_compra      DateTime    @db.DateTime(0)
+  valor_total      Float
+  status_compra    String      @db.VarChar(50)
+  endereco_entrega String?     @db.VarChar(255)
+  metodo_pagamento String?     @db.VarChar(50)
+  tbl_usuario      tbl_usuario @relation(fields: [id_cliente], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_compras_ibfk_1")
+
+  @@index([id_cliente], map: "id_cliente")
+}
+
+model tbl_funcionarios {
+  id              Int            @id @unique(map: "id") @default(autoincrement())
+  nome            String         @db.VarChar(40)
+  email           String         @db.VarChar(255)
+  senha           String         @db.VarChar(80)
+  telefone        String?        @db.VarChar(14)
+  foto_perfil     String?        @db.Text
+  data_nascimento DateTime?      @db.Date
+  id_sexo         Int
+  id_cargo        Int
+  tbl_cargos      tbl_cargos     @relation(fields: [id_cargo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_funcionarios_ibfk_1")
+  tbl_sexo        tbl_sexo       @relation(fields: [id_sexo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_funcionarios_ibfk_2")
+  tbl_servicos    tbl_servicos[]
+
+  @@index([id_cargo], map: "id_cargo")
+  @@index([id_sexo], map: "id_sexo")
+}
+
+model tbl_pet {
+  id              Int            @id @unique(map: "id") @default(autoincrement())
+  nome            String?        @db.VarChar(40)
+  foto            String?        @db.Text
+  data_nascimento DateTime?      @db.Date
+  id_dono         Int
+  id_sexo         Int
+  id_raca         Int
+  tbl_taxonomia   tbl_taxonomia  @relation(fields: [id_raca], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_pet_ibfk_1")
+  tbl_sexo        tbl_sexo       @relation(fields: [id_sexo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_pet_ibfk_2")
+  tbl_usuario     tbl_usuario    @relation(fields: [id_dono], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_pet_ibfk_3")
+  tbl_servicos    tbl_servicos[]
+
+  @@index([id_dono], map: "id_dono")
+  @@index([id_raca], map: "id_raca")
+  @@index([id_sexo], map: "id_sexo")
+}
+
+model tbl_produtos {
+  id                      Int                     @id @default(autoincrement())
+  nome                    String?                 @db.VarChar(40)
+  descricao               String?                 @db.VarChar(255)
+  foto                    String?                 @db.Text
+  quantidade              Int                     @default(0)
+  valor_unitario          Float
+  id_categoria            Int
+  tbl_categorias_produtos tbl_categorias_produtos @relation(fields: [id_categoria], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_produtos_ibfk_1")
+
+  @@index([id_categoria], map: "id_categoria")
+}
+
+model tbl_servicos {
+  id               Int              @id @unique(map: "id") @default(autoincrement())
+  nome             String           @db.VarChar(40)
+  descricao        String?          @db.VarChar(255)
+  data_realizacao  DateTime?        @db.Date
+  hora             DateTime?        @db.Time(0)
+  id_funcionario   Int
+  id_pet           Int
+  tbl_funcionarios tbl_funcionarios @relation(fields: [id_funcionario], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_servicos_ibfk_1")
+  tbl_pet          tbl_pet          @relation(fields: [id_pet], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_servicos_ibfk_2")
+
+  @@index([id_funcionario], map: "id_funcionario")
+  @@index([id_pet], map: "id_pet")
+}
+
+model tbl_sexo {
+  id               Int                @id @unique(map: "id") @default(autoincrement())
+  nome             String?            @db.VarChar(10)
+  tbl_funcionarios tbl_funcionarios[]
+  tbl_pet          tbl_pet[]
+  tbl_usuario      tbl_usuario[]
+}
+
+model tbl_taxonomia {
+  id      Int       @id @unique(map: "id") @default(autoincrement())
+  especie String    @db.VarChar(100)
+  raca    String    @db.VarChar(100)
+  tbl_pet tbl_pet[]
+}
+
+model tbl_usuario {
+  id              Int            @id @unique(map: "id") @default(autoincrement())
+  nome            String         @db.VarChar(40)
+  email           String         @db.VarChar(255)
+  senha           String         @db.VarChar(80)
+  telefone        String?        @db.VarChar(14)
+  data_nascimento DateTime?      @db.Date
+  foto_perfil     String?        @db.Text
+  id_sexo         Int
+  tbl_carrinho    tbl_carrinho[]
+  tbl_compras     tbl_compras[]
+  tbl_pet         tbl_pet[]
+  tbl_sexo        tbl_sexo       @relation(fields: [id_sexo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_usuario_ibfk_1")
+
+  @@index([id_sexo], map: "id_sexo")
+}
