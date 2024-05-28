@@ -250,3 +250,15 @@ h1{
     justify-content: center;
     flex-direction: column;
 }
+
+::placeholder{
+    color: white;
+}
+
+select{
+    color: white;
+}
+
+option{
+    background-color: #333;
+}

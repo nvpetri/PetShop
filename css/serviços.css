@@ -1,3 +1,10 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
 header{
     width: 100vw;
     display: flex;
@@ -15,7 +22,7 @@ header{
 }
 
 .titulo{
-    width: 12%;
+    width: 14%;
 }
 
 .icons{
@@ -27,4 +34,86 @@ header{
 
 i{
     font-size: 30px;
+    color: #FF914D;
+    cursor: pointer;
+}
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.servicos{
+    width: 50vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.servico{
+    width: 100%;
+    height: 30%;
+    display: grid;
+    place-items: center;
+}
+
+.container{
+    width: 20vw;
+    height: 50vh;
+    background-color: #6E17AF;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tabela{
+    width: 100%;
+    height: 100%;
+}
+
+table{
+    border: 1px solid #FFFFFF;
+}
+
+.table th,
+.table td {
+    color: white;
+    border-top: 1px solid #FFFFFF; 
+    border-bottom: 1px solid #FFFFFF; 
+    text-align: center; 
+    background-color: transparent;
+}
+
+button{
+    color: #FF914D;
+    background-color: transparent;
+    border: 4px solid #FF914D;
+    border-radius: 32px;
+    width: 15vw;
+    height: 6vh;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+button:hover{
+    background-color: #FF914D;
+    transition: 0.3s;
+    color: white;
+}
+
+.container h1{
+    color: white;
+    text-align: center;
+    font-size: 32px;
+}
+
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 15vh;
 }
