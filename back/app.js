@@ -27,3 +27,31 @@ app.use((request, response, next) => {
 const bodyParserJSON = bodyParser.json()
 
 app.use(bodyParserJSON)
+
+/*******  Importando as controllers do projeto  *************/
+
+const controllerUsuario = require('./controller/controller_usuario.js')
+
+/********************************************************** */
+
+app.post('/v2/petshop/usuario', cors(), bodyParserJSON, async(request, response, next) => {
+    let contentType = request.headers['content-type']
+
+    let dadosBody = request.body
+
+    let resultDados = await controllerUsuario.insertUser(dadosBody, contentType)
+
+    response.status(resultDados.status_code)
+    response.json(resultDados)
+})
+
+app.get('/v2/petshop/usuario', cors(), async(request, response, next) => {
+    let dadosUsuario = await controllerUsuario.selectUser()
+
+    response.status(dadosUsuario.status_code)
+    response.json(dadosUsuario)
+})
+
+
+console.log("API funcionando na porta 8080")
+app.listen(8080, () => {})
