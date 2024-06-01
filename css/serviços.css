@@ -59,7 +59,7 @@ main{
 }
 
 .container{
-    width: 20vw;
+    width: 40%;
     height: 50vh;
     background-color: #6E17AF;
     border-radius: 32px;
@@ -133,11 +133,34 @@ footer{
     height: 70vh;
     display: flex;
     align-items: center;
+    justify-content: center;
     background-color: white;
     border-radius: 32px;
+    flex-direction: column;
 }
 
 .modal-content {
     background: none;
     border: none;
+}
+
+.botao-sair{
+    width: 90%;
+    align-items: end;
+    display: flex;
+    justify-content: end;
+}
+
+.exit i{
+    color: white;
+    font-size: 20px;
+}
+
+.exit{
+    background-color: #FF914D;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
 }
