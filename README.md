@@ -19,7 +19,7 @@ O PetShopping, uma loja especializada em produtos e serviços para animais de es
 <a>https://www.figma.com/design/UeC8K7CLuzkV1YfPeQDd2x/PetShopping?node-id=0%3A1&t=7LXWWO7vipND8nAQ-1</a>
 
 #### Mobile:
-<img src="" width=''>
+<img src="./imgs(readme)/mobile.png" width='300'>
 
 #### Desktop página inicial:
 <img src="./imgs(readme)/desktop-pg.png" width='1000'>
