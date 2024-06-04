@@ -32,7 +32,7 @@ create table tbl_funcionarios(
     telefone varchar(14),
     foto_perfil text,
     data_nascimento date,
-    id_sexo int not null,
+    id_sexo int,
     id_cargo int not null,
     
     foreign key(id_cargo)references tbl_cargos(id),
@@ -72,7 +72,7 @@ create table tbl_usuario(
     telefone varchar(14),
     data_nascimento date,
     foto_perfil text,
-    id_sexo int not null,
+    id_sexo int,
     
     foreign key(id_sexo) references tbl_sexo(id),
     
