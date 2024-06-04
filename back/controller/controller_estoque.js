@@ -120,9 +120,39 @@ const selectProdutos = async function() {
     }
 }
 
+const deletarProduto = async function(id) {
+    try {
+        if (id == null || id == undefined || id == 1 || isNaN(id)) {
+            ERROR_Messages.ERROR_INVALID_ID
+        } else {
+            const produtoExcluido = await estoqueDAO.excluirProduto(id)
+            if (produtoExcluido) return ERROR_Messages.SUCCESS_DELETED_ITEM
+            else return ERROR_Messages.ERROR_INTERNAL_SERVER_DB
+        }
+    } catch (error) {
+        return ERROR_Messages.ERROR_INTERNAL_SERVER
+    }
+}
+
+const deletarCategoria = async function(id) {
+    try {
+        if (id == null || id == undefined || id == 1 || isNaN(id)) {
+            ERROR_Messages.ERROR_INVALID_ID
+        } else {
+            const produtoExcluido = await estoqueDAO.excluirCategoria(id)
+            if (produtoExcluido) return ERROR_Messages.SUCCESS_DELETED_ITEM
+            else return ERROR_Messages.ERROR_INTERNAL_SERVER_DB
+        }
+    } catch (error) {
+        return ERROR_Messages.ERROR_INTERNAL_SERVER
+    }
+}
+
 module.exports = {
     selectCategorias,
     insertCategoria,
     selectProdutos,
-    insertProduto
+    insertProduto,
+    deletarProduto,
+    deletarCategoria
 }

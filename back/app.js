@@ -39,6 +39,7 @@ app.use(bodyParserJSON)
 
 const controllerUsuario = require('./controller/controller_usuario.js')
 const controllerEstoque = require('./controller/controller_estoque.js')
+const controllerSexo = require('./controller/controller_sexo.js')
 
 /************************************************************************** *\
                     ENDPOINTS RELACIONADOS AO USUARIO
@@ -111,6 +112,54 @@ app.post('/v1/petshop/produtos/categorias', cors(), bodyParserJSON, async(reques
     response.status(resultDados.status_code)
     response.json(resultDados)
 })
+
+app.delete('/v1/petshop/produtos/deletar/:id', cors(), async(request, response, next) => {
+    const id = request.params.id
+
+    let resultDados = await controllerEstoque.deletarProduto(id)
+
+    response.status(resultDados.status_code).json(resultDados)
+})
+
+app.delete('/v1/petshop/produtos/categoria/:id', cors(), async(request, response, next) => {
+    const id = request.params.id
+
+    let resultDados = await controllerEstoque.deletarCategoria(id)
+
+    response.status(resultDados.status_code).json(resultDados)
+})
+
+/************************************************************************** *\
+                    ENDPOINTS RELACIONADOS AO SEXO
+\*************************************************************************3 */
+
+app.get('/v1/petshop/sexo', cors(), async(request, response, next) => {
+    let dadosSexo = await sexoController.getListarSexos()
+
+    if (dadosSexo) {
+        response.status(dadosSexo.status_code).json(dadosSexo)
+    } else {
+        response.status(404).json({ message: 'Nenhum registro encontrado' })
+    }
+})
+
+app.post('/v1/petshop/inserirSexo', cors(), bodyParser.json(), async(request, response, next) => {
+    let contentType = request.headers['content-type']
+    let dadosBody = request.body
+
+    let resultDados = await sexoController.setNovoSexo(dadosBody, contentType)
+
+    response.status(resultDados.status_code).json(resultDados)
+})
+
+app.delete('/v1/petshop/deletarSexo/:id', cors(), async(request, response, next) => {
+    const id = request.params.id
+
+    let resultDados = await sexoController.setExcluirSexo(id)
+
+    response.status(resultDados.status_code).json(resultDados)
+})
+
 
 console.log("API funcionando na porta 8080")
 app.listen(8080, () => {})

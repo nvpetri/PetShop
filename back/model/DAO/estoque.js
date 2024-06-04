@@ -113,11 +113,41 @@ const getProdutos = async function() {
     }
 }
 
+const excluirProduto = async function(id) {
+    try {
+        let sql = `delete from tbl_produtos where id = ${id}`
+
+        let result = await prisma.$executeRawUnsafe(sql)
+
+        if (result) return true
+        else return false
+
+    } catch (error) {
+        return false
+    }
+}
+
+const excluirCategoria = async function(id) {
+    try {
+        let sql = `delete from tbl_categorias_produtos where id = ${id}`
+
+        let result = await prisma.$executeRawUnsafe(sql)
+
+        if (result) return true
+        else return false
+
+    } catch (error) {
+        return false
+    }
+}
+
 module.exports = {
     insertCategoria,
     insertProduto,
     getId,
     getIdCategoria,
     getCategoria,
-    getProdutos
+    getProdutos,
+    excluirProduto,
+    excluirCategoria
 }
