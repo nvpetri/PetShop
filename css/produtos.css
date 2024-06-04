@@ -146,6 +146,7 @@ footer{
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid #D9D9D9;
+    padding-bottom: 2rem;
 }
 
 .img-compra{
