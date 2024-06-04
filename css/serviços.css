@@ -5,6 +5,12 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body{
+    background-image: url(../img/background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 header{
     width: 100vw;
     display: flex;
