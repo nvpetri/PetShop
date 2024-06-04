@@ -87,7 +87,7 @@ h2 {
     gap: 60px;
 }
 
-.card {
+.cards .card {
     width: 18rem;
     max-height: 45vh;
     display: flex;
@@ -97,7 +97,7 @@ h2 {
     font-weight: bold;
 }
 
-.card:hover{
+.cards .card:hover{
     scale: 1.1;
     transition: 0.3s;
 }
@@ -135,4 +135,29 @@ input:focus {
 
 footer{
     height: 10vh;
+}
+
+.modal-body{
+    height: 60vh !important;
+}
+
+.compra{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #D9D9D9;
+    padding-bottom: 2rem;
+}
+
+.img-compra{
+    display: grid;
+    place-items: center;
+    background-color: transparent;
+    border: 2px solid #D9D9D9;
+    height: 100%;
+    width: 50%;
+}
+
+.img-compra img{
+    width: 80%;
 }
