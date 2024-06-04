@@ -64,7 +64,45 @@ const selectUser = async function() {
     }
 }
 
+const validaUser = async function(dados, content) {
+    try {
+        if (String(content).toLowerCase() == 'application/json') {
+
+            if (dados.email != null || dados.email != undefined || dados.email != "" ||
+                dados.senha != null || dados.senha != undefined || dados.senha != ""
+            ) {
+
+                let jsonValidado = {}
+
+                let validacao = await clientesDAO.validaUser(dados.email)
+
+                if (validacao[0].senha == dados.senha) {
+
+                    jsonValidado.nome = validacao[0].nome
+                    jsonValidado.email = validacao[0].email
+                    jsonValidado.foto_perfil = validacao[0].foto_perfil
+                    jsonValidado.id_sexo = validacao[0].id_sexo
+                    jsonValidado.telefone = validacao[0].telefone
+                    jsonValidado.data_nascimento = validacao[0].data_nascimento
+                    jsonValidado.status_code = 200
+
+                    return jsonValidado
+                } else {
+                    return ERROR_Messages.ERROR_NOTFOUND
+                }
+            } else {
+                return ERROR_Messages.ERROR_REQUIRED_FIELDS
+            }
+        } else {
+            return ERROR_Messages.ERROR_INVALID_FORMAT
+        }
+    } catch (error) {
+
+    }
+}
+
 module.exports = {
     insertUser,
-    selectUser
+    selectUser,
+    validaUser
 }

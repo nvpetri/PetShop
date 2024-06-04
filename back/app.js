@@ -34,7 +34,7 @@ const controllerUsuario = require('./controller/controller_usuario.js')
 
 /********************************************************** */
 
-app.post('/v2/petshop/usuario', cors(), bodyParserJSON, async(request, response, next) => {
+app.post('/v1/petshop/usuario', cors(), bodyParserJSON, async(request, response, next) => {
     let contentType = request.headers['content-type']
 
     let dadosBody = request.body
@@ -45,13 +45,23 @@ app.post('/v2/petshop/usuario', cors(), bodyParserJSON, async(request, response,
     response.json(resultDados)
 })
 
-app.get('/v2/petshop/usuario', cors(), async(request, response, next) => {
+app.get('/v1/petshop/usuario', cors(), async(request, response, next) => {
     let dadosUsuario = await controllerUsuario.selectUser()
 
     response.status(dadosUsuario.status_code)
     response.json(dadosUsuario)
 })
 
+app.post('/v1/petshop/usuario/login', cors(), bodyParserJSON, async(request, response, next) => {
+    let contentType = request.headers['content-type']
+
+    let dadosUsuario = request.body
+
+    let validacao = await controllerUsuario.validaUser(dadosUsuario, contentType)
+
+    response.status(validacao.status_code)
+    response.json(validacao)
+})
 
 console.log("API funcionando na porta 8080")
 app.listen(8080, () => {})

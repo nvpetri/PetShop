@@ -60,8 +60,23 @@ const selectUser = async function() {
     }
 }
 
+const validaUser = async function(dados) {
+
+    try {
+        let sql = `select * from tbl_usuario where email = '${dados}'`
+
+        let rsUser = await prisma.$queryRawUnsafe(sql)
+
+        return rsUser
+    } catch (error) {
+        return false
+    }
+
+}
+
 module.exports = {
     insertUser,
     getId,
-    selectUser
+    selectUser,
+    validaUser
 }
