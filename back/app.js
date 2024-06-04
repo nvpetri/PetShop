@@ -39,7 +39,8 @@ app.use(bodyParserJSON)
 
 const controllerUsuario = require('./controller/controller_usuario.js')
 const controllerEstoque = require('./controller/controller_estoque.js')
-const controllerSexo = require('./controller/controller_sexo.js')
+const sexoController = require('./controller/controller_sexo.js')
+const controller_funcionario = require('./controller/controller_funcionarios.js')
 
 /************************************************************************** *\
                     ENDPOINTS RELACIONADOS AO USUARIO
@@ -160,6 +161,37 @@ app.delete('/v1/petshop/deletarSexo/:id', cors(), async(request, response, next)
     response.status(resultDados.status_code).json(resultDados)
 })
 
+/************************************************************************** *\
+                    ENDPOINTS RELACIONADOS AO FUNCIONARIO   
+\*************************************************************************1 */
+app.post('/v1/petshop/funcionario', cors(), bodyParserJSON, async(request, response, next) => {
+    let contentType = request.headers['content-type']
+
+    let dadosBody = request.body
+
+    let resultDados = await controller_funcionario.insertFuncionario(dadosBody, contentType)
+
+    response.status(resultDados.status_code)
+    response.json(resultDados)
+})
+
+app.get('/v1/petshop/funcionario', cors(), async(request, response, next) => {
+    let dadosFuncionario = await controller_funcionario.selectFuncionario()
+
+    response.status(dadosFuncionario.status_code)
+    response.json(dadosFuncionario)
+})
+
+app.post('/v1/petshop/funcionario/login', cors(), bodyParserJSON, async(request, response, next) => {
+    let contentType = request.headers['content-type']
+
+    let dadosFuncionario = request.body
+
+    let validacao = await controller_funcionario.validaFuncionario(dadosUsuario, contentType)
+
+    response.status(validacao.status_code)
+    response.json(validacao)
+})
 
 console.log("API funcionando na porta 8080")
 app.listen(8080, () => {})
