@@ -1,80 +1,88 @@
-/* calendario.css */
-
-/* Aumenta o tamanho do calendário */
-html .flatpickr-calendar {
-    width: 400px;
-    height: auto;
-    background-color: transparent; /* Torna o fundo transparente */
-    border: none; /* Remove qualquer borda */
-    box-shadow: none; /* Remove qualquer sombra */
+*{
+    font-family: 'Poppins', sans-serif;
 }
 
-/* Estilo para os dias do mês */
-html .flatpickr-day {
-    color: white; /* Cor dos dias do mês */
-    background-color: transparent; /* Fundo transparente para os dias */
+.container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-/* Estilo para os dias da semana */
-html .flatpickr-weekday {
-    color: purple; /* Cor dos dias da semana */
-    background-color: transparent; /* Fundo transparente para os dias da semana */
+.calendar {
+  width: 100%;
+  max-width: 600px;
+  padding: 30px 20px;
 }
-
-/* Estilo para a data selecionada */
-html .flatpickr-day.selected,
-html .flatpickr-day.startRange,
-html .flatpickr-day.endRange,
-html .flatpickr-day.selected.inRange {
-    background: purple; /* Cor de fundo roxo para a data selecionada */
-    border-color: purple; /* Cor da borda roxa para a data selecionada */
-    color: white; /* Cor do texto da data selecionada */
+.calendar .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
 }
-
-/* Estilo para a data no hover */
-html .flatpickr-day:hover {
-    background: rgba(128, 0, 128, 0.5); /* Fundo roxo translúcido ao passar o mouse */
+.calendar .header .month {
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  color: white
 }
-
-/* Aumenta o tamanho dos dias */
-html .flatpickr-day,
-html .flatpickr-weekday {
-    font-size: 1.2em; /* Aumenta o tamanho da fonte */
-    padding: 10px; /* Adiciona espaçamento interno */
-    margin: 5px; /* Adiciona margem ao redor dos dias */
+.calendar .header .btns {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 10px;
 }
-
-/* Especificamente para o contêiner do calendário */
-html .flatpickr-inline {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+.calendar .header .btns .btn {
+  width: 50px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.1s;
 }
-
-html .flatpickr-month {
-    background: transparent; /* Fundo transparente para o mês */
-    color: white; /* Cor branca para o texto do mês */
+.calendar .header .btns .btn:hover {
+  transform: scale(1.05);
 }
-
-html .flatpickr-current-month {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5em; /* Aumenta o tamanho da fonte do mês */
+.calendar .weekdays {
+  display: flex;
+  gap: 10px;
+  color: #6E17AF;
 }
-
-html .flatpickr-months .flatpickr-prev-month,
-html .flatpickr-months .flatpickr-next-month {
-    color: white; /* Cor branca para as setas de navegação */
+.calendar .weekdays .day {
+  width: calc(100% / 7 - 10px);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
 }
-
-html .flatpickr-weekdays {
-    display: flex;
-    justify-content: space-around;
+.calendar .days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
-
-html .flatpickr-days {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.calendar .days .day {
+  width: calc(100% / 7 - 10px);
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 400;
+  color: white;
+  transition: all 0.3s;
+  user-select: none;
+}
+.calendar .days .day:not(.next):not(.prev):hover {
+  background: #6E17AF;
+}
+.calendar .days .day.next,
+.calendar .days .day.prev {
+  color: #D4D4D4;
+}
+.calendar .days .day.today {
+  color: #fff;
 }
