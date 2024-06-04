@@ -1,0 +1,24 @@
+.contador{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+  }
+
+  .p{
+    display: grid;
+    place-items: center;
+    height: 50%;
+  }
+  
+  .number{
+    background-color: red;
+    display: grid;
+    place-items: center;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .counter{
+    width: 50%;
+    color: red;
+  }
