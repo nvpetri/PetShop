@@ -1,0 +1,80 @@
+/* calendario.css */
+
+/* Aumenta o tamanho do calendário */
+html .flatpickr-calendar {
+    width: 400px;
+    height: auto;
+    background-color: transparent; /* Torna o fundo transparente */
+    border: none; /* Remove qualquer borda */
+    box-shadow: none; /* Remove qualquer sombra */
+}
+
+/* Estilo para os dias do mês */
+html .flatpickr-day {
+    color: white; /* Cor dos dias do mês */
+    background-color: transparent; /* Fundo transparente para os dias */
+}
+
+/* Estilo para os dias da semana */
+html .flatpickr-weekday {
+    color: purple; /* Cor dos dias da semana */
+    background-color: transparent; /* Fundo transparente para os dias da semana */
+}
+
+/* Estilo para a data selecionada */
+html .flatpickr-day.selected,
+html .flatpickr-day.startRange,
+html .flatpickr-day.endRange,
+html .flatpickr-day.selected.inRange {
+    background: purple; /* Cor de fundo roxo para a data selecionada */
+    border-color: purple; /* Cor da borda roxa para a data selecionada */
+    color: white; /* Cor do texto da data selecionada */
+}
+
+/* Estilo para a data no hover */
+html .flatpickr-day:hover {
+    background: rgba(128, 0, 128, 0.5); /* Fundo roxo translúcido ao passar o mouse */
+}
+
+/* Aumenta o tamanho dos dias */
+html .flatpickr-day,
+html .flatpickr-weekday {
+    font-size: 1.2em; /* Aumenta o tamanho da fonte */
+    padding: 10px; /* Adiciona espaçamento interno */
+    margin: 5px; /* Adiciona margem ao redor dos dias */
+}
+
+/* Especificamente para o contêiner do calendário */
+html .flatpickr-inline {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+html .flatpickr-month {
+    background: transparent; /* Fundo transparente para o mês */
+    color: white; /* Cor branca para o texto do mês */
+}
+
+html .flatpickr-current-month {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em; /* Aumenta o tamanho da fonte do mês */
+}
+
+html .flatpickr-months .flatpickr-prev-month,
+html .flatpickr-months .flatpickr-next-month {
+    color: white; /* Cor branca para as setas de navegação */
+}
+
+html .flatpickr-weekdays {
+    display: flex;
+    justify-content: space-around;
+}
+
+html .flatpickr-days {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
