@@ -89,10 +89,35 @@ const getId = async function() {
     }
 }
 
+const getCategoria = async function() {
+    try {
+        const sql = 'select * from tbl_categorias_produtos'
+
+        let result = await prisma.$queryRawUnsafe(sql)
+
+        return result
+    } catch (error) {
+        return false
+    }
+}
+
+const getProdutos = async function() {
+    try {
+        const sql = 'select * from tbl_produtos'
+
+        let result = await prisma.$queryRawUnsafe(sql)
+
+        return result
+    } catch (error) {
+        return false
+    }
+}
+
 module.exports = {
     insertCategoria,
     insertProduto,
     getId,
     getIdCategoria,
-
+    getCategoria,
+    getProdutos
 }
