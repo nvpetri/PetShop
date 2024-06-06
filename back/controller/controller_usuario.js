@@ -1,7 +1,8 @@
 const clientesDAO = require('../model/DAO/usuario.js')
 const ERROR_Messages = require('../model/DAO/config/config.js')
 
-const insertUser = async function(dadosCliente, content) {
+const insertUser = async function(dadosUsuario, content) {
+
     try {
         if (String(content).toLowerCase() == 'application/json') {
 
@@ -9,17 +10,15 @@ const insertUser = async function(dadosCliente, content) {
 
             if (!dadosUsuario.nome || dadosUsuario.nome.length === 0 || dadosUsuario.nome.length > 40 ||
                 !dadosUsuario.email || dadosUsuario.email.length === 0 || dadosUsuario.email.length > 255 ||
-                !dadosUsuario.senha || dadosUsuario.senha.length === 0 || dadosUsuario.senha.length > 80 ||
-                (dadosUsuario.telefone && dadosUsuario.telefone.length > 14) ||
-                (dadosUsuario.data_nascimento && !isValidDate(dadosUsuario.data_nascimento)) ||
-                (dadosUsuario.foto_perfil && dadosUsuario.foto_perfil.length > 65535) ||
-                isNaN(dadosUsuario.id_sexo)
+                !dadosUsuario.senha || dadosUsuario.senha.length === 0 || dadosUsuario.senha.length > 80
             ) {
                 return ERROR_Messages.ERROR_REQUIRED_FIELDS;
             } else {
-                let novoUsuario = await clientesDAO.insertUser(dadosCliente)
+
+                let novoUsuario = await clientesDAO.insertUser(dadosUsuario)
 
                 if (novoUsuario) {
+
                     let idUsuario = await clientesDAO.getId()
 
                     novoUsuarioJson.status = ERROR_Messages.SUCCESS_CREATED_ITEM.status
@@ -36,6 +35,7 @@ const insertUser = async function(dadosCliente, content) {
             return ERROR_Messages.ERROR_INVALID_FORMAT
         }
     } catch (error) {
+        console.log(error)
         return ERROR_Messages.ERROR_INTERNAL_SERVER
     }
 }

@@ -46,12 +46,14 @@ const controller_funcionario = require('./controller/controller_funcionarios.js'
                     ENDPOINTS RELACIONADOS AO USUARIO
 \*************************************************************************1 */
 app.post('/v1/petshop/usuario', cors(), bodyParserJSON, async(request, response, next) => {
+
     let contentType = request.headers['content-type']
 
     let dadosBody = request.body
 
     let resultDados = await controllerUsuario.insertUser(dadosBody, contentType)
 
+    console.log(resultDados)
     response.status(resultDados.status_code)
     response.json(resultDados)
 })

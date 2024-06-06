@@ -3,6 +3,7 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
 const insertUser = async function(novosDados) {
+
     try {
         let sql = `INSERT INTO tbl_usuario (`
 
@@ -21,9 +22,10 @@ const insertUser = async function(novosDados) {
         })
         sql += `) VALUES (${placeholders})`
 
+        console.log(sql)
         let result = await prisma.$executeRawUnsafe(sql, values)
 
-        if (result) return true
+        if (result) return result
         else return false
     } catch (error) {
         return false

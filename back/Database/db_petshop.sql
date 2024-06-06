@@ -138,19 +138,29 @@ create table tbl_servicos(
 	id int not null auto_increment primary key,
     nome varchar(40) not null,
     descricao varchar(255),
+    
+    unique index(id),
+    unique key(id)
+);
+
+create table tbl_servico_criado(
+    id int not null,
     data_realizacao date,
     hora time,
     estado boolean,
+    id_servico int not null,
     id_funcionario int not null,
     id_pet int not null,
     
+    foreign key(id_servico) references tbl_servicos(id),
+
     foreign key(id_funcionario) references tbl_funcionarios(id),
     
     foreign key(id_pet) references tbl_pet (id),
     
     unique index(id),
     unique key(id)
-);
+)
 
 insert into tbl_servicos (nome, descricao, data_realizacao, hora, id_funcionario, id_pet) values (
 "Banho e tosa", "Banho e tosa do Myke", "2024-02-03", "17:00:00", "1", "1"), (
