@@ -4,7 +4,7 @@ const prisma = new PrismaClient()
 
 const insertUser = async function(novosDados) {
     try {
-        let sql = `INSERT INTO tbl_cliente (`
+        let sql = `INSERT INTO tbl_usuario (`
 
         const keys = Object.keys(novosDados)
         const values = Object.values(novosDados)
@@ -33,7 +33,7 @@ const insertUser = async function(novosDados) {
 
 const getId = async function() {
     try {
-        const sqlGet = 'select cast(id as decimal) as id from tbl_cliente order by id desc limit 1'
+        const sqlGet = 'select cast(id as decimal) as id from tbl_usuario order by id desc limit 1'
 
         let resultGet = await prisma.$queryRawUnsafe(sqlGet)
 
@@ -49,7 +49,7 @@ const getId = async function() {
 
 const selectUser = async function() {
     try {
-        let sql = 'select * from tbl_cliente'
+        let sql = 'select * from tbl_usuario'
 
         let rsUser = await prisma.$queryRawUnsafe(sql)
 
