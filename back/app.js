@@ -163,7 +163,7 @@ app.delete('/v1/petshop/deletarSexo/:id', cors(), async(request, response, next)
 
 /************************************************************************** *\
                     ENDPOINTS RELACIONADOS AO FUNCIONARIO   
-\*************************************************************************1 */
+\*************************************************************************4 */
 app.post('/v1/petshop/funcionario', cors(), bodyParserJSON, async(request, response, next) => {
     let contentType = request.headers['content-type']
 
@@ -192,6 +192,10 @@ app.post('/v1/petshop/funcionario/login', cors(), bodyParserJSON, async(request,
     response.status(validacao.status_code)
     response.json(validacao)
 })
+
+/*************************************************************************** *\
+                    CONFIGURAÇÃO DE PORTA
+ \* **************************************************************************/
 
 console.log("API funcionando na porta 8080")
 app.listen(8080, () => {})

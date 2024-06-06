@@ -140,6 +140,7 @@ create table tbl_servicos(
     descricao varchar(255),
     data_realizacao date,
     hora time,
+    estado boolean,
     id_funcionario int not null,
     id_pet int not null,
     
