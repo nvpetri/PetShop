@@ -32,7 +32,7 @@ create table tbl_funcionarios(
     telefone varchar(14),
     foto_perfil text,
     data_nascimento date,
-    id_sexo int,
+    id_sexo int not null,
     id_cargo int not null,
     
     foreign key(id_cargo)references tbl_cargos(id),
@@ -90,6 +90,8 @@ values (
   "1982-08-09", 
   1
   );
+  
+  select * from tbl_usuario where email = 'celso@celso.dev';
   
 create table tbl_taxonomia(
 	id int not null primary key auto_increment,
