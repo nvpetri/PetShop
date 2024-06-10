@@ -187,7 +187,7 @@ app.post('/v1/petshop/funcionario/login', cors(), bodyParserJSON, async(request,
 
     let dadosFuncionario = request.body
 
-    let validacao = await controller_funcionario.validaFuncionario(dadosUsuario, contentType)
+    let validacao = await controller_funcionario.validaFuncionario(dadosFuncionario, contentType)
 
     response.status(validacao.status_code)
     response.json(validacao)
