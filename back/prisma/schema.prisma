@@ -131,11 +131,11 @@ model tbl_usuario {
   telefone        String?        @db.VarChar(14)
   data_nascimento DateTime?      @db.Date
   foto_perfil     String?        @db.Text
-  id_sexo         Int
+  id_sexo         Int?
   tbl_carrinho    tbl_carrinho[]
   tbl_compras     tbl_compras[]
   tbl_pet         tbl_pet[]
-  tbl_sexo        tbl_sexo       @relation(fields: [id_sexo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_usuario_ibfk_1")
+  tbl_sexo        tbl_sexo?      @relation(fields: [id_sexo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_usuario_ibfk_1")
 
   @@index([id_sexo], map: "id_sexo")
 }
