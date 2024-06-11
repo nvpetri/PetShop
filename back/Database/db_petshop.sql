@@ -148,7 +148,7 @@ insert into tbl_servicos (nome, descricao) values (
 "Consulta", "Consulta do Myke");
 
 create table tbl_servico_criado(
-    id int not null,
+    id int not null auto_increment,
     data_realizacao date,
     hora time,
     estado boolean,
@@ -164,6 +164,30 @@ create table tbl_servico_criado(
     
     unique index(id),
     unique key(id)
+);
+
+create table tbl_relatorio(
+	id int not null auto_increment,
+    id_pet int not null,
+    id_usuario int not null,
+    id_funcionario int not null,
+    id_servico int not null,
+    data_realizacao date,
+    hora time,
+    observacoes varchar(255),
+    medicamentos varchar(255),
+    
+    foreign key(id_servico) references tbl_servicos(id),
+
+    foreign key(id_funcionario) references tbl_funcionarios(id),
+    
+    foreign key(id_pet) references tbl_pet (id),
+    
+    foreign key(id_usuario) references tbl_usuario(id),
+    
+    unique index(id),
+    unique key(id)
+    
 );
 
 create table tbl_categorias_produtos(
