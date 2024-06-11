@@ -143,6 +143,10 @@ create table tbl_servicos(
     unique key(id)
 );
 
+insert into tbl_servicos (nome, descricao) values (
+"Banho e tosa", "Banho e tosa do Myke"), (
+"Consulta", "Consulta do Myke");
+
 create table tbl_servico_criado(
     id int not null,
     data_realizacao date,
@@ -160,11 +164,7 @@ create table tbl_servico_criado(
     
     unique index(id),
     unique key(id)
-)
-
-insert into tbl_servicos (nome, descricao, data_realizacao, hora, id_funcionario, id_pet) values (
-"Banho e tosa", "Banho e tosa do Myke", "2024-02-03", "17:00:00", "1", "1"), (
-"Consulta", "Consulta do Myke", "2024-04-06", "15:40:00", "2", "1");
+);
 
 create table tbl_categorias_produtos(
 	id int not null auto_increment primary key,

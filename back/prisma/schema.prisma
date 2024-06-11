@@ -45,35 +45,35 @@ model tbl_compras {
 }
 
 model tbl_funcionarios {
-  id              Int            @id @unique(map: "id") @default(autoincrement())
-  nome            String         @db.VarChar(40)
-  email           String         @db.VarChar(255)
-  senha           String         @db.VarChar(80)
-  telefone        String?        @db.VarChar(14)
-  foto_perfil     String?        @db.Text
-  data_nascimento DateTime?      @db.Date
-  id_sexo         Int
-  id_cargo        Int
-  tbl_cargos      tbl_cargos     @relation(fields: [id_cargo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_funcionarios_ibfk_1")
-  tbl_sexo        tbl_sexo       @relation(fields: [id_sexo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_funcionarios_ibfk_2")
-  tbl_servicos    tbl_servicos[]
+  id                 Int                  @id @unique(map: "id") @default(autoincrement())
+  nome               String               @db.VarChar(40)
+  email              String               @db.VarChar(255)
+  senha              String               @db.VarChar(80)
+  telefone           String?              @db.VarChar(14)
+  foto_perfil        String?              @db.Text
+  data_nascimento    DateTime?            @db.Date
+  id_sexo            Int
+  id_cargo           Int
+  tbl_cargos         tbl_cargos           @relation(fields: [id_cargo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_funcionarios_ibfk_1")
+  tbl_sexo           tbl_sexo             @relation(fields: [id_sexo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_funcionarios_ibfk_2")
+  tbl_servico_criado tbl_servico_criado[]
 
   @@index([id_cargo], map: "id_cargo")
   @@index([id_sexo], map: "id_sexo")
 }
 
 model tbl_pet {
-  id              Int            @id @unique(map: "id") @default(autoincrement())
-  nome            String?        @db.VarChar(40)
-  foto            String?        @db.Text
-  data_nascimento DateTime?      @db.Date
-  id_dono         Int
-  id_sexo         Int
-  id_raca         Int
-  tbl_taxonomia   tbl_taxonomia  @relation(fields: [id_raca], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_pet_ibfk_1")
-  tbl_sexo        tbl_sexo       @relation(fields: [id_sexo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_pet_ibfk_2")
-  tbl_usuario     tbl_usuario    @relation(fields: [id_dono], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_pet_ibfk_3")
-  tbl_servicos    tbl_servicos[]
+  id                 Int                  @id @unique(map: "id") @default(autoincrement())
+  nome               String?              @db.VarChar(40)
+  foto               String?              @db.Text
+  data_nascimento    DateTime?            @db.Date
+  id_dono            Int
+  id_sexo            Int
+  id_raca            Int
+  tbl_taxonomia      tbl_taxonomia        @relation(fields: [id_raca], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_pet_ibfk_1")
+  tbl_sexo           tbl_sexo             @relation(fields: [id_sexo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_pet_ibfk_2")
+  tbl_usuario        tbl_usuario          @relation(fields: [id_dono], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_pet_ibfk_3")
+  tbl_servico_criado tbl_servico_criado[]
 
   @@index([id_dono], map: "id_dono")
   @@index([id_raca], map: "id_raca")
@@ -94,18 +94,10 @@ model tbl_produtos {
 }
 
 model tbl_servicos {
-  id               Int              @id @unique(map: "id") @default(autoincrement())
-  nome             String           @db.VarChar(40)
-  descricao        String?          @db.VarChar(255)
-  data_realizacao  DateTime?        @db.Date
-  hora             DateTime?        @db.Time(0)
-  id_funcionario   Int
-  id_pet           Int
-  tbl_funcionarios tbl_funcionarios @relation(fields: [id_funcionario], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_servicos_ibfk_1")
-  tbl_pet          tbl_pet          @relation(fields: [id_pet], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_servicos_ibfk_2")
-
-  @@index([id_funcionario], map: "id_funcionario")
-  @@index([id_pet], map: "id_pet")
+  id                 Int                  @id @unique(map: "id") @default(autoincrement())
+  nome               String               @db.VarChar(40)
+  descricao          String?              @db.VarChar(255)
+  tbl_servico_criado tbl_servico_criado[]
 }
 
 model tbl_sexo {
@@ -138,4 +130,21 @@ model tbl_usuario {
   tbl_sexo        tbl_sexo?      @relation(fields: [id_sexo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_usuario_ibfk_1")
 
   @@index([id_sexo], map: "id_sexo")
+}
+
+model tbl_servico_criado {
+  id               Int              @unique(map: "id")
+  data_realizacao  DateTime?        @db.Date
+  hora             DateTime?        @db.Time(0)
+  estado           Boolean?
+  id_servico       Int
+  id_funcionario   Int
+  id_pet           Int
+  tbl_servicos     tbl_servicos     @relation(fields: [id_servico], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_servico_criado_ibfk_1")
+  tbl_funcionarios tbl_funcionarios @relation(fields: [id_funcionario], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_servico_criado_ibfk_2")
+  tbl_pet          tbl_pet          @relation(fields: [id_pet], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tbl_servico_criado_ibfk_3")
+
+  @@index([id_funcionario], map: "id_funcionario")
+  @@index([id_pet], map: "id_pet")
+  @@index([id_servico], map: "id_servico")
 }

@@ -3,35 +3,24 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
 const insertUser = async function(novosDados) {
-
     try {
-        let sql = `INSERT INTO tbl_usuario (`
+        const columns = Object.keys(novosDados).filter(key => novosDados[key] !== undefined && novosDados[key] !== null)
+        const values = Object.values(novosDados).filter(value => value !== undefined && value !== null)
 
-        const keys = Object.keys(novosDados)
-        const values = Object.values(novosDados)
-        let placeholders = ''
-        keys.forEach((key, index) => {
-            if (values[index] !== undefined && values[index] !== null) {
-                sql += `${key}`
-                placeholders += `?`
-                if (index !== keys.length - 1) {
-                    sql += `, `
-                    placeholders += `, `
-                }
-            }
-        })
-        sql += `) VALUES (${placeholders})`
+        const columnNames = columns.join(', ')
+        const valuePlaceholders = Array(values.length).fill('?').join(', ')
 
-        console.log(sql)
-        let result = await prisma.$executeRawUnsafe(sql, values)
+        const sql = `INSERT INTO tbl_usuario (${columnNames}) VALUES (${valuePlaceholders})`
 
-        if (result) return result
-        else return false
+        let result = await prisma.$executeRawUnsafe(sql, ...values)
+
+        return !!result
     } catch (error) {
         return false
     }
-
 }
+
+
 
 const getId = async function() {
     try {
@@ -75,6 +64,8 @@ const validaUser = async function(dados) {
     }
 
 }
+
+// const deleteUser = async
 
 module.exports = {
     insertUser,

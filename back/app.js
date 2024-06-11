@@ -53,7 +53,6 @@ app.post('/v1/petshop/usuario', cors(), bodyParserJSON, async(request, response,
 
     let resultDados = await controllerUsuario.insertUser(dadosBody, contentType)
 
-    console.log(resultDados)
     response.status(resultDados.status_code)
     response.json(resultDados)
 })
@@ -194,6 +193,11 @@ app.post('/v1/petshop/funcionario/login', cors(), bodyParserJSON, async(request,
     response.status(validacao.status_code)
     response.json(validacao)
 })
+
+/************************************************************************** *\
+                    ENDPOINTS RELACIONADOS AOS PETS   
+\*************************************************************************4 */
+
 
 /*************************************************************************** *\
                     CONFIGURAÇÃO DE PORTA

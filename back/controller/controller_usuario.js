@@ -1,7 +1,7 @@
 const clientesDAO = require('../model/DAO/usuario.js')
 const ERROR_Messages = require('../model/DAO/config/config.js')
 
-const insertUser = async function(dadosCliente, content) {
+const insertUser = async function(dadosUsuario, content) {
     try {
         if (String(content).toLowerCase() == 'application/json') {
 
@@ -14,7 +14,7 @@ const insertUser = async function(dadosCliente, content) {
             ) {
                 return ERROR_Messages.ERROR_REQUIRED_FIELDS;
             } else {
-                let novoUsuario = await clientesDAO.insertUser(dadosCliente)
+                let novoUsuario = await clientesDAO.insertUser(dadosUsuario)
 
                 if (novoUsuario) {
                     let idUsuario = await clientesDAO.getId()
