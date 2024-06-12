@@ -4,30 +4,17 @@ const prisma = new PrismaClient()
 
 const insertCategoria = async function(novosDados) {
     try {
-        let sql = `INSERT INTO tbl_categorias_produtos(`
+        const columns = Object.keys(novosDados).filter(key => novosDados[key] !== undefined && novosDados[key] !== null)
+        const values = Object.values(novosDados).filter(value => value !== undefined && value !== null)
 
-        const keys = Object.keys(novosDados)
-        const values = Object.values(novosDados)
+        const columnNames = columns.join(', ')
+        const valuePlaceholders = Array(values.length).fill('?').join(', ')
 
-        let placeholders = ''
+        const sql = `INSERT INTO tbl_categorias_produtos (${columnNames}) VALUES (${valuePlaceholders})`
 
-        keys.forEach((key, index) => {
-            if (values[index] !== undefined && values[index] !== null) {
-                sql += `${key}`
-                placeholders += `?`
-                if (index !== keys.length - 1) {
-                    sql += `, `
-                    placeholders += `, `
-                }
-            }
-        })
-        sql += `) VALUES (${placeholders})`
+        let result = await prisma.$executeRawUnsafe(sql, ...values)
 
-        let result = await prisma.$executeRawUnsafe(sql, values)
-
-        if (result) return true
-        else return false
-
+        return !!result
     } catch (error) {
         return false
     }
@@ -49,28 +36,17 @@ const getIdCategoria = async function() {
 
 const insertProduto = async function(novosDados) {
     try {
-        let sql = `INSERT INTO tbl_produtos(`
+        const columns = Object.keys(novosDados).filter(key => novosDados[key] !== undefined && novosDados[key] !== null)
+        const values = Object.values(novosDados).filter(value => value !== undefined && value !== null)
 
-        const keys = Object.keys(novosDados)
-        const values = Object.values(novosDados)
-        let placeholders = ''
-        keys.forEach((key, index) => {
-            if (values[index] !== undefined && values[index] !== null) {
-                sql += `${key}`
-                placeholders += `?`
-                if (index !== keys.length - 1) {
-                    sql += `, `
-                    placeholders += `, `
-                }
-            }
-        })
-        sql += `) VALUES (${placeholders})`
+        const columnNames = columns.join(', ')
+        const valuePlaceholders = Array(values.length).fill('?').join(', ')
 
-        let result = await prisma.$executeRawUnsafe(sql, values)
+        const sql = `INSERT INTO tbl_produtos (${columnNames}) VALUES (${valuePlaceholders})`
 
-        if (result) return true
-        else return false
+        let result = await prisma.$executeRawUnsafe(sql, ...values)
 
+        return !!result
     } catch (error) {
         return false
     }
