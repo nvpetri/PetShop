@@ -11,7 +11,15 @@
 #
 Acesse a pagina de administração:
 <a href="https://nvpetri.github.io/CMS-Petshop/">CMS</a>
+
 #
+
+#
+Acesse o nosso back-end:
+<a href="https://github.com/nvpetri/Back-Petshop">BACK</a>
+
+#
+
 # Situação problema:
 
 O PetShopping, uma loja especializada em produtos e serviços para animais de estimação, está enfrentando desafios de gerenciamento, como controle de estoque, agendamento de serviços de banho e tosa, acompanhamento de consultas veterinárias e gerenciamento de clientes e seus animais. Para melhorar a eficiência e a experiência do cliente, eles optaram por desenvolver um sistema de gestão integrado.
